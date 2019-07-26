@@ -3,6 +3,8 @@ import os
 import time
 
 
+# mypy: allow-untyped-calls, allow-untyped-defs
+
 def install_osx():
     """Set up to run via launchd on OS X."""
     with os.popen('which hass') as inp:
@@ -52,10 +54,10 @@ def run(args):
     if args[0] == 'install':
         install_osx()
         return 0
-    elif args[0] == 'uninstall':
+    if args[0] == 'uninstall':
         uninstall_osx()
         return 0
-    elif args[0] == 'restart':
+    if args[0] == 'restart':
         uninstall_osx()
         # A small delay is needed on some systems to let the unload finish.
         time.sleep(0.5)
